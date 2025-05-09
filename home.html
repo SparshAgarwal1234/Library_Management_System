@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f1d5b9;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #f57b42;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        .block {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(84, 95, 82, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .block:hover {
+            transform: scale(1.05);
+        }
+
+        .block img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+        }
+
+        .block h3 a {
+            color: #f57b42;
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .block h3 a:hover {
+            color: #e0662f;
+        }
+
+        .block p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .col-md-4 {
+            margin-bottom: 30px;
+        }
+
+        .block-1 {
+            background-color: #ffe5d5;
+        }
+
+        .block-2 {
+            background-color: #ffecd6;
+        }
+
+        .block-3 {
+            background-color: #ffe6b9;
+        }
+
+        .block-4 {
+            background-color: #fff1c4;
+        }
+
+        .block-5 {
+            background-color: #fcebd6;
+        }
+
+        .block-6 {
+            background-color: #ffeadf;
+        }
+
+        .navbar-custom {
+            background-color: #f57b42;
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: white;
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: #e0662f;
+        }
+
+        .up_arrow{
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <a class="navbar-brand" href="#"><i class="fas fa-book"></i> Library Management System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="color: white;"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./home.html"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#searchModal"><i
+                            class="fas fa-search"></i> Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-contact-us"></i> Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <marquee>
+        <h1>Library Management System</h1>
+    </marquee>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="block block-1">
+                    <img src="https://img.icons8.com/ios-filled/100/000000/add-user-male.png" class="img-fluid"
+                        alt="New Registration">
+                    <h3><a href="./1 loginpage.html">New Registration</a></h3>
+                    <p>Register for a library membership today!</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="block block-2">
+                    <img src="https://img.icons8.com/ios-filled/100/000000/contact-card.png" class="img-fluid"
+                        alt="Re-Registration">
+                    <h3><a href="./2 index.html">Re-Registration</a></h3>
+                    <p>Get in touch with the library staff for support.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="block block-3">
+                    <img src="/img/vacant seat.png" class="img-fluid" alt="Vacant Seat">
+                    <h3><a href="seats.html">Vacant Seats</a></h3>
+                    <p>Check available seats in the library.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="block block-4">
+                    <img src="./img/books.png" class="img-fluid" alt="Books and PDFs">
+                    <h3><a href="books.html">Books and PDFs</a></h3>
+                    <p>Access a variety of books and downloadable PDFs.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="block block-5">
+                    <img src="./img/upgrade slots.jpg" class="img-fluid" alt="Upgrade Slots">
+                    <h3><a href="./3 timeslot.html"> Select or Upgrade Slots</a></h3>
+                    <p>Upgrade your library time slots easily.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="block block-6">
+                    <img src="https://img.icons8.com/ios-filled/100/000000/news.png" class="img-fluid"
+                        alt="Recent News">
+                    <h3><a href="news.html">Recent News</a></h3>
+                    <p>Stay updated with the latest library news and events.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br>
+
+    <footer class="probootstrap-footer probootstrap-bg">
+        <div class="container text-center">
+            <u> <strong><b>
+                        <h1>Contact Info</h1>
+                    </b></strong></u>
+            <ul class="probootstrap-contact-info" style="list-style: none; padding: 0;">
+                <li><i class="icon-location2"></i> <span>Knowledge Hub, Roorkee, Uttarakhand</span></li>
+                <li><a href="https://mail.google.com/mail/"><i
+                            class="icon-mail"></i><span>lmseducation@gmail.com</a></span></li>
+                <li><i class="icon-phone2"></i><span>+91-103 496 7540</span></li>
+            </ul>
+        </div>
+        <br><br><br>
+        <div class="probootstrap-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 text-left">
+                        <b>
+                            <p>&copy; <a href="#">Library Management System </a>. Developed <i
+                                    class="icon icon-heart"></i> by <a href="#">Sanyam & Team</a></p>
+                        </b>
+                    </div>
+                    <div class="col-md-4 text-right probootstrap-back-to-top">
+                        <b>
+                            <p><a href="#" class="js-backtotop">
+                                <img class="up_arrow" src="/img/arrow.png" alt="" >
+                            </a>
+                            </p>
+                        </b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

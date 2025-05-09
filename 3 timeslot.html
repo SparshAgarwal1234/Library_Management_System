@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Time Slot Selection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1d5b9;
+            background-image: url('https://i.pinimg.com/originals/0d/b0/71/0db071f491619da7aa6a368d8682f462.gif');
+            background-size: cover;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f57b42;
+        }
+
+        .slot-selection {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1000px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container {
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .image-container {
+            z-index: 10;
+            top: 10%;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 150px;
+            border-radius: 10px;
+        }
+
+        .main-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .slot {
+            margin-bottom: 25px;
+        }
+
+        .slot label {
+            font-size: 25px;
+        }
+
+        .slot input {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #f57b42;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            opacity: 0.5; /* Make it look disabled */
+            pointer-events: none; /* Prevent clicks */
+        }
+
+        .submit-btn.enabled {
+            opacity: 1; /* Make it look enabled */
+            pointer-events: auto; /* Allow clicks */
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slot-selection">
+        <h1>Select or Upgrade Your Library Time Slot</h1><br><br>
+        <div class="main-content">
+            <div class="form-container">
+                <form id="slot-selection" action="submit_time_slot.php" method="POST">
+                    <div class="slot">
+                        <label>
+                            <input type="radio" name="time_slot" value="morning" required>
+                            Morning (6 AM - 11 AM)
+                        </label>
+                    </div>
+                    <div class="slot">
+                        <label>
+                            <input type="radio" name="time_slot" value="afternoon" required>
+                            Afternoon (11 AM - 4 PM)
+                        </label>
+                    </div>
+                    <div class="slot">
+                        <label>
+                            <input type="radio" name="time_slot" value="evening" required>
+                            Evening (4 PM - 9 PM)
+                        </label>
+                    </div>
+                    <div class="slot">
+                        <label>
+                            <input type="radio" name="time_slot" value="full_day" required>
+                            Full Day (6 AM - 9 PM)
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn" disabled>
+                        <a href="./slot confirm.html"><b>Submit</b></a>
+                    </button>
+                </form>
+                <div class="image-container">
+                    <img src="./img/clock.webp" alt="Library  Image">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const form = document.getElementById('slot-selection');
+        const submitButton = document.querySelector('.submit-btn');
+
+        // Disable the submit button initially
+        submitButton.disabled = true;
+
+        // Add event listeners to radio buttons
+        const radioButtons = document.querySelectorAll('input[name="time_slot"]');
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', function () {
+                // Enable the submit button if a radio button is selected
+                submitButton.disabled = false;
+                submitButton.classList.add('enabled');
+            });
+        });
+
+        form.addEventListener('submit', function (e) {
+            // Check if any time slot is selected
+            const selectedSlot = document.querySelector('input[name="time_slot"]:checked');
+
+            if (!selectedSlot) {
+                // Prevent form submission
+                e.preventDefault();
+                alert('Please select a time slot!');
+            }
+        });
+        
+    </script>
+</body>
+
+</html>

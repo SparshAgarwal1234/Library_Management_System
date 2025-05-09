@@ -1,0 +1,168 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 10;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: #e0662f;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin: 20px 0;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #booksTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #booksTable th,
+        #booksTable td {
+            border: 2px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        #booksTable th {
+            background-color: #f4f4f4;
+        }
+
+        #booksTable tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        #booksTable tbody tr:nth-child(odd) {
+            background-color: #fff;
+        }
+    </style>
+    <header>
+        <marquee>
+            <h1>Library Management System</h1>
+        </marquee>
+    </header>
+    <main>
+        <section id="books">
+            <center>
+                <h2>Manage Books</h2>
+            </center>
+            <center>
+                <div>
+                    <input id="idInput" type="number" placeholder="ID">
+                    <input id="titleInput" type="text" placeholder="Book Title">
+                    <input id="authorInput" type="text" placeholder="Author">
+                    <button id="addBookBtn">Add Book</button>
+                </div>
+                <div>
+                    <input id="bookIdInput" type="number" placeholder="Book ID to Remove">
+                    <button id="removeBookBtn">Remove Book</button>
+                </div>
+            </center>
+            <table id="booksTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <center>ID</center>
+                        </th>
+                        <th>
+                            <center>Title</center>
+                        </th>
+                        <th>
+                            <center>Author</center>
+                        </th>
+                        <th>
+                            <center>Status</center>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="booksTableBody">
+
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script>
+        document.getElementById('addBookBtn').addEventListener('click', function() {
+            const id = document.getElementById('idInput').value;
+            const title = document.getElementById('titleInput').value;
+            const author = document.getElementById('authorInput').value;
+
+            // Assuming the API returns the added book object
+            fetch('/api/books', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id, title, author }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Add the new book to the table
+                const tableBody = document.getElementById('booksTableBody');
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${data.id}</td>
+                    <td>${data.title}</td>
+                    <td>${data.author}</td>
+                    <td>Available</td>
+                `;
+                tableBody.appendChild(newRow);
+
+                // Clear input fields
+                document.getElementById('idInput').value = '';
+                document.getElementById('titleInput').value = '';
+                document.getElementById('authorInput').value = '';
+            })
+            .catch((error) => {
+                console .error('Error:', error);
+            });
+        });
+    </script>
+</body>
+
+</html>

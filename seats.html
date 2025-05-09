@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 40;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+
+
+        }
+
+        header {
+            background: #e0662f;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin: 20px 0;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        #seating {
+            background: #e8f5e9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #seatStatus p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        #availabilityStatus {
+            font-weight: bold;
+            color: #4caf50;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+
+        a:hover {
+            color: red;
+        }
+    </style>
+    <header style=>
+        <marquee>
+            <h1>Library Management System</h1>
+        </marquee>
+    </header>
+    <main>
+
+        <center>
+            <section id="seat">
+                <h2>Reserve A Seat</h2>
+                <form id="bookForm">
+                    <input type="text" id="Enter No. of Seats" placeholder="Reserve A Seat" required>
+                    <button type="button" onclick="href='./4 confirmation.html'">
+                        <a href="./4 confirmation.html">Reserve</a>
+                    </button>
+
+
+
+                </form>
+                <ul id="bookList"></ul>
+            </section>
+
+            <section id="seating">
+                <h2>Seating Availability</h2>
+                <div id="seatStatus">
+                    <p>Total Seats: <span class="js-counter" data-from="0" data-to="50" data-speed="500"
+                            data-refresh-interval="50">50</span>
+                    <p>Vacant Seats: <span id="vacantSeats">30</span></p>
+                    <p>Status: <span id="availabilityStatus">Available</span></p>
+                </div>
+            </section>
+        </center>
+    </main>
+    <script src="script.js">
+        const bookForm = document.getElementById('bookForm');
+        const bookList = document.getElementById('bookList');
+        const totalSeats = 50;
+        let vacantSeats = 30;
+
+        bookForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById('bookTitle').value;
+            const author = document.getElementById('bookAuthor').value;
+
+            fetch('http://localhost:8080/api/books', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title, author }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    const newBook = document.createElement('li');
+                    newBook.textContent = `${data.title} by ${data.author}`;
+                    bookList.appendChild(newBook);
+
+                    bookForm.reset();
+                })
+                .catch((error) => console.error('Error:', error));
+        });
+
+        function updateSeatStatus() {
+            document.getElementById('totalSeats').textContent = totalSeats;
+            document.getElementById('vacantSeats').textContent = vacantSeats;
+            const status = vacantSeats > 0 ? 'Available' : 'Full';
+            document.getElementById('availabilityStatus').textContent = status;
+            document.getElementById('availabilityStatus').style.color = vacantSeats > 0 ? '#4caf50' : '#f44336';
+        }
+
+        updateSeatStatus();
+
+    </script>
+</body>
+
+</html>
